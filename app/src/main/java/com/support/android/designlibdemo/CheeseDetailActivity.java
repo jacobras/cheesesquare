@@ -17,17 +17,16 @@
 package com.support.android.designlibdemo;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-
-import java.util.Random;
+import com.support.android.designlibdemo.databinding.ActivityDetailBinding;
 
 public class CheeseDetailActivity extends AppCompatActivity {
 
@@ -36,7 +35,11 @@ public class CheeseDetailActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        ActivityDetailBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
+
+        // Bind a Cheese object.
+        Cheese cheese = new Cheese("Test cheese.");
+        binding.setCheese(cheese);
 
         Intent intent = getIntent();
         final String cheeseName = intent.getStringExtra(EXTRA_NAME);
