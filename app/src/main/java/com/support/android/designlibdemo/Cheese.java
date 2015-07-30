@@ -6,8 +6,12 @@ package com.support.android.designlibdemo;
  */
 public class Cheese {
     public final String info;
+    public final String friends;
+    public final String related;
 
-    public Cheese(String info) {
+    public Cheese(String info, String friends, String related) {
         this.info = info;
+        this.friends = friends;
+        this.related = related;
     }
 }

@@ -38,7 +38,7 @@ public class CheeseDetailActivity extends AppCompatActivity {
         ActivityDetailBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
         // Bind a Cheese object.
-        Cheese cheese = new Cheese("Test cheese.");
+        Cheese cheese = new Cheese("Test cheese.", getString(R.string.cheese_ipsum), getString(R.string.cheese_ipsum));
         binding.setCheese(cheese);
 
         Intent intent = getIntent();
