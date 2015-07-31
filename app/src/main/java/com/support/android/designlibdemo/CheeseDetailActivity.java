@@ -20,16 +20,18 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.support.android.designlibdemo.databinding.ActivityDetailBinding;
 
 public class CheeseDetailActivity extends AppCompatActivity {
-
     public static final String EXTRA_NAME = "cheese_name";
 
     @Override
@@ -38,7 +40,7 @@ public class CheeseDetailActivity extends AppCompatActivity {
         ActivityDetailBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
         // Bind a Cheese object.
-        Cheese cheese = new Cheese("Test cheese.", getString(R.string.cheese_ipsum), getString(R.string.cheese_ipsum));
+        final Cheese cheese = new Cheese("Test cheese.", getString(R.string.cheese_ipsum), getString(R.string.cheese_ipsum));
         binding.setCheese(cheese);
 
         Intent intent = getIntent();
@@ -51,6 +53,16 @@ public class CheeseDetailActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(cheeseName);
+
+        // Clicking the FAB updates the Cheese object, which should update the UI.
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(CheeseDetailActivity.this, "Updating Cheese...", Toast.LENGTH_SHORT).show();
+                cheese.setInfo("Updated info.");
+            }
+        });
 
         loadBackdrop();
     }
