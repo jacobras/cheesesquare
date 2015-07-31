@@ -60,7 +60,7 @@ public class CheeseDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(CheeseDetailActivity.this, "Updating Cheese...", Toast.LENGTH_SHORT).show();
-                cheese.setInfo("Updated info.");
+                cheese.info.set("Updated info.");
             }
         });
 
