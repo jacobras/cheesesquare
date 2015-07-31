@@ -25,10 +25,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.support.android.designlibdemo.databinding.ActivityDetailBinding;
 
 public class CheeseDetailActivity extends AppCompatActivity {
@@ -40,7 +37,7 @@ public class CheeseDetailActivity extends AppCompatActivity {
         ActivityDetailBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
         // Bind a Cheese object.
-        final Cheese cheese = new Cheese("Test cheese.", getString(R.string.cheese_ipsum), getString(R.string.cheese_ipsum));
+        final Cheese cheese = new Cheese("Test cheese.", getString(R.string.cheese_ipsum), getString(R.string.cheese_ipsum), Cheeses.getRandomCheeseDrawable());
         binding.setCheese(cheese);
 
         Intent intent = getIntent();
@@ -59,17 +56,10 @@ public class CheeseDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CheeseDetailActivity.this, "Updating Cheese...", Toast.LENGTH_SHORT).show();
                 cheese.info.set("Updated info.");
+                cheese.photoResourceId.set(Cheeses.getDifferentRandomCheeseDrawable(cheese.photoResourceId.get()));
             }
         });
-
-        loadBackdrop();
-    }
-
-    private void loadBackdrop() {
-        final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-        Glide.with(this).load(Cheeses.getRandomCheeseDrawable()).centerCrop().into(imageView);
     }
 
     @Override

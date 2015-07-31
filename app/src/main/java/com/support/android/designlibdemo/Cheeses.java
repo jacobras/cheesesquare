@@ -38,6 +38,16 @@ public class Cheeses {
         }
     }
 
+    public static int getDifferentRandomCheeseDrawable(int currentDrawable) {
+        int newDrabable = currentDrawable;
+
+        while (newDrabable == currentDrawable) {
+            newDrabable = getRandomCheeseDrawable();
+        }
+
+        return newDrabable;
+    }
+
     public static final String[] sCheeseStrings = {
             "Abbaye de Belloc", "Abbaye du Mont des Cats", "Abertam", "Abondance", "Ackawi",
             "Acorn", "Adelost", "Affidelice au Chablis", "Afuega'l Pitu", "Airag", "Airedale",
